@@ -1,0 +1,9 @@
+{
+  "name": "sharknado",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/sharknado",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project sharknado --web",
+  "targets": {}
+}

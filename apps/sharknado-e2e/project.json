@@ -1,0 +1,9 @@
+{
+  "name": "sharknado-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/sharknado-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["sharknado"],
+  "// targets": "to see all targets run: nx show project sharknado-e2e --web",
+  "targets": {}
+}
