@@ -25,7 +25,7 @@ export async function BlogItemDetail({ id }: BlogItemDetailProps) {
   return (
     <div className={'container prose'}>
       <a href="/blog">Back to Blog</a>
-      <h1> {data.blogpost?.data?.attributes?.title}</h1>
+      <h1 className="my-8">{data.blogpost?.data?.attributes?.title}</h1>
       <p>{data.blogpost?.data?.attributes?.description}</p>
     </div>
   );
