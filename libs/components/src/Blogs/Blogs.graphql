@@ -21,3 +21,19 @@ query Blogposts {
     }
   }
 }
+
+query BlogPostDetail($id: ID) {
+  blogpost(id: $id) {
+    data {
+      id
+      attributes {
+        title
+        slug
+        description
+        createdAt
+        updatedAt
+        publishedAt
+      }
+    }
+  }
+}

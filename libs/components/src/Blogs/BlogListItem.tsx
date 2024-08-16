@@ -1,16 +1,20 @@
+import Link from 'next/link';
 import React from 'react';
 
 interface BlogListItemProps {
   title?: string | null;
   content?: string | null;
+  id?: string | null;
 }
 
-export function BlogListItem({ title, content }: BlogListItemProps) {
+export function BlogListItem({ title, content, id }: BlogListItemProps) {
   return (
-    <div>
-      <h3 className="text-lg text-green-500">{title}</h3>
-      <p>{content}</p>
-    </div>
+    <Link href={`/blog/${id}`}>
+      <div className="prose">
+        <h3 className="text-lg my-4">{title}</h3>
+        <p className="text-md">{content}</p>
+      </div>
+    </Link>
   );
 }
 

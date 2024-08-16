@@ -18,12 +18,13 @@ export async function BlogList() {
   // console.log(data);
 
   return (
-    <div className="bg-slate-600 h-screen w-full flex items-center justify-center">
-      <h2 className="text-red-500">Welcome to BlogList!</h2>
+    <div className="h-screen w-full items-center justify-center">
+      <h2 className="text-4xl my-8">Welcome to BlogList!</h2>
       <ul>
         {data.blogposts?.data.map((blog) => (
           <BlogListItem
             key={blog.id}
+            id={blog.id}
             title={blog.attributes?.title}
             content={blog.attributes?.description}
           />

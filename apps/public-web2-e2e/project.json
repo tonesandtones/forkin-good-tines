@@ -1,9 +1,0 @@
-{
-  "name": "public-web2-e2e",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/public-web2-e2e/src",
-  "tags": [],
-  "implicitDependencies": ["public-web2"],
-  "// targets": "to see all targets run: nx show project public-web2-e2e --web",
-  "targets": {}
-}

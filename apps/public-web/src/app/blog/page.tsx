@@ -8,8 +8,7 @@ export default function Index() {
    */
   return (
     <div className="wrapper">
-      <div className="container">
-        <p className="text-xl">ffff</p>
+      <div className="container mx-auto">
         <BlogList />
       </div>
     </div>
