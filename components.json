@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": false,
+  "tailwind": {
+    "config": "libs/libs/shared-utils/tailwind.config.js",
+    "css": "libs/libs/shared-utils/global.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "@sharknado/shared-ui",
+    "utils": "@sharknado/shared-utils"
+  }
+}

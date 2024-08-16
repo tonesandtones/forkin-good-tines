@@ -16,8 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "@sharknado/cms-api": ["libs/cms-api/src/index.ts"],
-      "@sharknado/components": ["libs/components/src/index.ts"],
-      "@sharknado/components/server": ["libs/components/src/server.ts"]
+      "@sharknado/shared-ui": ["libs/shared-ui/src/index.ts"],
+      "@sharknado/shared-ui/*": ["libs/libs/shared-ui/src/*"],
+      "@sharknado/shared-utils": ["libs/shared-utils/src/index.ts"],
+      "@sharknado/shared-utils/*": ["libs/libs/shared-utils/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

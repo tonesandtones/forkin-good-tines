@@ -32,7 +32,7 @@ This will set up the necessary packages to run and build the project.
   - Next.js Public Website: Located in apps/public-web, this frontend application is built using Next.js.
 - Libs
   - Shared Code: Contains reusable code across different apps in the repository.
-  - Components: Shared React components for Next.js, located in libs/components.
+  - Shared-ui: Shared React components for Next.js, located in libs/shared-ui.
   - CMS API: A library for interacting with Strapi CMS via GraphQL, located in libs/cms-api.
 
 ## Running the Applications
@@ -96,9 +96,11 @@ const { data } = await getClient().query<BlogpostsQuery, BlogpostsQueryVariables
 console.log(data);
 ```
 
-## Component Library
+## Shared UI Library
 
 The project should include a set of shared components, designed for ease of use, customization, and scalability.
+
+This library also includes support for shadcn. In order to add a specific shadcn component, please use the add component task provided in the nx commands. It's crucial to ensure that you enter the correct name of the component.
 
 ### Directory Structure
 
@@ -121,7 +123,7 @@ Components are organized within the shared directory:
 Components are imported via ES6 import statements. Example:
 
 ```typescript
-import { BlogList, BlogListItem } from '@sharknado/components';
+import { BlogList, BlogListItem } from '@sharknado/shared-ui';
 ```
 
 ## Styling

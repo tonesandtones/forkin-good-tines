@@ -1,4 +1,4 @@
-import { BlogList, BlogListItem } from '@sharknado/components';
+import { BlogList } from '@sharknado/shared-ui';
 
 export default function Index() {
   /*

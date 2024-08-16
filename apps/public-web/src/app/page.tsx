@@ -1,4 +1,3 @@
-import { BlogList, BlogListItem } from '@sharknado/components';
 import Link from 'next/link';
 
 export default function Index() {
