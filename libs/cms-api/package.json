@@ -1,0 +1,11 @@
+{
+  "name": "@sharknado/cms-api",
+  "version": "0.0.1",
+  "scripts": {},
+  "devDependencies": {
+    "@graphql-codegen/typescript-document-nodes": "^4.0.9",
+    "graphql-codegen-typescript-client": "0.18.2",
+    "graphql-codegen-typescript-common": "0.18.2",
+    "graphql-codegen-typescript-graphql-files-modules": "0.18.2"
+  }
+}

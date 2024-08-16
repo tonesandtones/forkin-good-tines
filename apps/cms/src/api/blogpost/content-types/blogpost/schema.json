@@ -4,7 +4,8 @@
   "info": {
     "singularName": "blogpost",
     "pluralName": "blogposts",
-    "displayName": "blogpost"
+    "displayName": "blogpost",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,6 +18,9 @@
     "slug": {
       "type": "uid",
       "targetField": "title"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

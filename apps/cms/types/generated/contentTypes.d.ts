@@ -368,6 +368,7 @@ export interface ApiBlogpostBlogpost extends Schema.CollectionType {
     singularName: 'blogpost';
     pluralName: 'blogposts';
     displayName: 'blogpost';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -375,6 +376,7 @@ export interface ApiBlogpostBlogpost extends Schema.CollectionType {
   attributes: {
     title: Attribute.String;
     slug: Attribute.UID<'api::blogpost.blogpost', 'title'>;
+    description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

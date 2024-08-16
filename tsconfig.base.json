@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@sharknado/cms-api": ["libs/cms-api/src/index.ts"],
+      "@sharknado/components": ["libs/components/src/index.ts"],
+      "@sharknado/components/server": ["libs/components/src/server.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

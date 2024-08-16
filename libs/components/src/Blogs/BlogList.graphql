@@ -1,0 +1,23 @@
+query Blogposts {
+  blogposts {
+    data {
+      id
+      attributes {
+        title
+        slug
+        createdAt
+        updatedAt
+        publishedAt
+        description
+      }
+    }
+    meta {
+      pagination {
+        total
+        page
+        pageSize
+        pageCount
+      }
+    }
+  }
+}
