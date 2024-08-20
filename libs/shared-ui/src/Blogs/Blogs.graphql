@@ -1,5 +1,14 @@
-query Blogposts {
-  blogposts {
+query Blogposts(
+  $page: Int
+  $pageSize: Int
+  $filters: BlogpostFiltersInput
+  $sort: [String]
+) {
+  blogposts(
+    pagination: { page: $page, pageSize: $pageSize }
+    sort: $sort
+    filters: $filters
+  ) {
     data {
       id
       attributes {
@@ -34,6 +43,14 @@ query BlogPostDetail($id: ID) {
         updatedAt
         publishedAt
       }
+    }
+  }
+}
+
+mutation CreateBlogpost($title: String, $description: String) {
+  createBlogpost(data: { title: $title, description: $description }) {
+    data {
+      id
     }
   }
 }

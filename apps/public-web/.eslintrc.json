@@ -6,6 +6,7 @@
     "../../.eslintrc.json"
   ],
   "ignorePatterns": ["!**/*", ".next/**/*"],
+  
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],

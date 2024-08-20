@@ -19,7 +19,7 @@ export function UserMenu() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      {/* <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="icon" className="rounded-full">
           <span className={styles.avatar}>
             {status === 'authenticated' ? (
@@ -45,7 +45,7 @@ export function UserMenu() {
         ) : (
           <DropdownMenuItem onClick={() => signIn()}>Login</DropdownMenuItem>
         )}
-      </DropdownMenuContent>
+      </DropdownMenuContent> */}
     </DropdownMenu>
   );
 }

@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_elements_buttons",
+  "info": {
+    "displayName": "Button",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "outline",
+        "secondary",
+        "ghost",
+        "link",
+        "destructive"
+      ],
+      "default": "default",
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "open_in_new_window": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

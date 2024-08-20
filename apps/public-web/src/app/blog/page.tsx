@@ -1,15 +1,27 @@
-import { BlogList } from '@sharknado/shared-ui';
+import {
+  BlogList,
+  ComponentFactory,
+  ComponentRegistry,
+  ContentPageHero,
+  DynamicPageContent,
+} from '@sharknado/shared-ui';
 
-export default function Index() {
+export default function Index({
+  searchParams,
+}: {
+  searchParams: URLSearchParams;
+}) {
   /*
    * Replace the elements below with your own.
    *
    * Note: The corresponding styles are in the ./index.tailwind file.
    */
+
   return (
     <div className="wrapper">
       <div className="container mx-auto">
-        <BlogList />
+        <DynamicPageContent pageId={'1'} searchParams={searchParams} />
+        {/* <BlogList /> */}
       </div>
     </div>
   );

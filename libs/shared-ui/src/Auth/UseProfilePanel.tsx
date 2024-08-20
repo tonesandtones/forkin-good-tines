@@ -4,18 +4,18 @@ import { useSession } from 'next-auth/react';
 import { AvatarImage } from '../avatar';
 import { Card } from '../card';
 
-export function UseProfilePanel() {
+const UseProfilePanel = () => {
   const { data: session } = useSession();
 
-  if (!session) {
+  if (!session?.user) {
     return <p>Access Denied</p>;
   }
 
   return (
     <Card className="mb-6">
-      <div className="flex items-center p-4">
+      {/* <div className="flex items-center p-4">
         <Avatar className="rounded-full overflow-hidden w-[75px]">
-          <AvatarImage src={session.user.image ?? ''} />
+          <AvatarImage src={session?.user?.image ?? ''} />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <div className="ml-4">
@@ -31,11 +31,10 @@ export function UseProfilePanel() {
           <p className="text-gray-600 dark:text-gray-300">
             {session.user.phone_number}
           </p>
-          {/* {JSON.stringify(session.user, null, 2)} */}
         </div>
-      </div>
+      </div> */}
     </Card>
   );
-}
+};
 
-export default UseProfilePanel;
+export { UseProfilePanel };

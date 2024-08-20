@@ -11,27 +11,38 @@ import {
 import { Button } from '../button';
 
 interface BlogListItemProps {
+  layout: 'grid' | 'list';
   title?: string | null;
   content?: string | null;
   id?: string | null;
 }
 
-export function BlogListItem({ title, content, id }: BlogListItemProps) {
+export function BlogListItem({
+  layout,
+  title,
+  content,
+  id,
+}: BlogListItemProps) {
+  if (layout === 'grid') {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>{title}</CardTitle>
+          {/* <CardDescription>Card Description</CardDescription> */}
+        </CardHeader>
+        <CardContent>
+          <p>{content}</p>
+        </CardContent>
+      </Card>
+    );
+  }
   return (
-    <Card className={'my-8'}>
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        {/* <CardDescription>Card Description</CardDescription> */}
-      </CardHeader>
-      <CardContent>
+    <div className="border-b-2  py-8">
+      <div className="prose">
+        <h4>{title}</h4>
         <p>{content}</p>
-      </CardContent>
-      <CardFooter>
-        <Button variant="outline">
-          <Link href={`/blog/${id}`}>Read More</Link>
-        </Button>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }
 

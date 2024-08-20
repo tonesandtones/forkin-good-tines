@@ -1,3 +1,5 @@
+export * from './CallToAction/CallToAction';
+export * from './Pages/DynamicPageContent';
 export * from './Blogs/BlogList';
 export * from './Blogs/BlogItemDetail';
 export * from './Blogs/BlogListItem';
@@ -13,3 +15,6 @@ export * from './avatar';
 export * from './tabs';
 export * from './switch';
 export * from './Auth/UseProfilePanel';
+export { ComponentRegistry } from './Factory/ComponentRegistry';
+export { ComponentFactory } from './Factory/ComponentFactory';
+export { ContentPageHero } from './Pages/ContentPageHero';
