@@ -1,14 +1,4 @@
-import Link from 'next/link';
-import React from 'react';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '../card';
-import { Button } from '../button';
+import { Card, CardContent, CardHeader, CardTitle } from '../card';
 
 interface BlogListItemProps {
   layout: 'grid' | 'list';

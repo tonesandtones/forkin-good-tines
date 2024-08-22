@@ -10,7 +10,15 @@ const config: CodegenConfig = {
       //   scalars: { Date: Date, DateTime: Date, Object: Object },
       //   withHooks: true,
       // },
-      plugins: ['typescript', 'typescript-operations', 'typed-document-node'],
+      plugins: [
+        'typescript',
+        'typescript-operations',
+        'typescript-react-apollo',
+        // 'typed-document-node',
+      ],
+      config: {
+        withHooks: true,
+      },
     },
   },
 };

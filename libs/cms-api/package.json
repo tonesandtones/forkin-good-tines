@@ -2,6 +2,9 @@
   "name": "@sharknado/cms-api",
   "version": "0.0.1",
   "scripts": {},
+  "dependencies": {
+    "@apollo/experimental-nextjs-app-support": "*"
+  },
   "devDependencies": {
     "@graphql-codegen/typescript-document-nodes": "^4.0.9",
     "graphql-codegen-typescript-client": "0.18.2",

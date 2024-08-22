@@ -10,21 +10,29 @@ import {
   CardHeader,
   CardTitle,
 } from '../card';
+import React from 'react';
 
-export function CallToAction(props: ComponentContentCallToAction) {
+export function CallToAction({
+  title,
+  subtitle,
+  image,
+  text,
+  buttons,
+}: ComponentContentCallToAction) {
   // const {title, image,} = props;
   return (
     <div className="py-10 px-4 bg-gray-100">
       <Card className="max-w-md mx-auto rounded-lg shadow-lg overflow-hidden bg-white">
-        {props.image?.data?.attributes?.url && (
-          <Image
-            src={`${process.env.IMAGE_BASE_URL}${props.image.data.attributes.url}`}
-            alt={props.title}
-            width={400}
-            height={225}
-            className="w-full h-56 object-cover"
-          />
-        )}
+        {process.env.NEXT_PUBLIC_IMAGE_BASE_URL &&
+          image?.data?.attributes?.url && (
+            <Image
+              src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${image.data.attributes.url}`}
+              alt={title ?? ''}
+              width={400}
+              height={225}
+              className="w-full h-56 object-cover"
+            />
+          )}
         <CardHeader className="p-4">
           <CardTitle className="text-xl font-semibold text-gray-800">
             {title}
@@ -37,14 +45,14 @@ export function CallToAction(props: ComponentContentCallToAction) {
           <p className="text-gray-700">{text}</p>
         </CardContent>
         <CardFooter className="p-4 justify-end">
-          {buttons.map((button, idx) => (
+          {buttons?.map((button, idx) => (
             <Button
               key={idx}
               size="default"
-              variant={button.variant}
+              variant={button?.variant}
               className="ml-2"
             >
-              {button.label}
+              {button?.label}
             </Button>
           ))}
         </CardFooter>

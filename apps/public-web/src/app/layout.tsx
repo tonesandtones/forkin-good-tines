@@ -1,3 +1,5 @@
+import { BlogList, CallToAction, ContentPageHero } from '@sharknado/shared-ui';
+import { ComponentRegistry } from '../ComponentFactory/ComponentRegistry';
 import './global.css';
 
 export const metadata = {
@@ -10,6 +12,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  ComponentRegistry.registerComponent(
+    'ComponentContentPageHero',
+    ContentPageHero
+  );
+
+  ComponentRegistry.registerComponent(
+    'ComponentContentCallToAction',
+    CallToAction
+  );
+
+  ComponentRegistry.registerComponent('ComponentContentBlogListing', BlogList);
+
   return (
     <html lang="en">
       <body>{children}</body>

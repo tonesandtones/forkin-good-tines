@@ -1,10 +1,5 @@
-import {
-  BlogList,
-  ComponentFactory,
-  ComponentRegistry,
-  ContentPageHero,
-  DynamicPageContent,
-} from '@sharknado/shared-ui';
+import { ContentPageHero } from '@sharknado/shared-ui';
+import { DynamicPageContent } from '../../ComponentFactory/DynamicPageContent';
 
 export default function Index({
   searchParams,
@@ -20,7 +15,9 @@ export default function Index({
   return (
     <div className="wrapper">
       <div className="container mx-auto">
-        <DynamicPageContent pageId={'1'} searchParams={searchParams} />
+        <h1 className="text-4xl font-bold">Welcome to public-web!</h1>
+        {/* <ContentPageHero id={'1'} title={'fooo'} /> */}
+        <DynamicPageContent pageId={'1'} />
         {/* <BlogList /> */}
       </div>
     </div>

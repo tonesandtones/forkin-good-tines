@@ -1,5 +1,7 @@
 'use client';
-import { useSearchParams } from 'next/navigation';
+import { ResponseCollectionMeta } from '@sharknado/cms-api';
+
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import {
   Pagination,
   PaginationContent,
@@ -9,39 +11,52 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '../pagination';
-
 export function BlogListPagination({
-  pageCount,
-  total,
-  defaultPageSize = 10,
+  searchMeta,
+  updateMeta,
 }: {
-  pageCount: number;
-  defaultPageSize: number;
-  total: number;
+  searchMeta: ResponseCollectionMeta | null | undefined;
+  updateMeta: Dispatch<
+    SetStateAction<ResponseCollectionMeta | null | undefined>
+  >;
 }) {
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
-  const page = searchParams.get('page')
-    ? parseInt(searchParams.get('page') ?? '1')
-    : 1;
+  // const page = searchParams.get('page')
+  //   ? parseInt(searchParams.get('page') ?? '1')
+  //   : 1;
 
-  const pageSize = searchParams.get('pageSize')
-    ? parseInt(searchParams.get('pageSize') as string)
-    : defaultPageSize;
+  // const pageSize = searchParams.get('pageSize')
+  //   ? parseInt(searchParams.get('pageSize') as string)
+  //   : defaultPageSize;
 
-  const getPageNumbers = () => {
-    const pages = [];
+  const [page, setPage] = useState<number>(searchMeta?.pagination.page ?? 1);
+  const [pageSize, setPageSize] = useState<number>(
+    searchMeta?.pagination.pageSize ?? 10
+  );
+  const [pageCount, setPageCount] = useState<number>(1);
+  const [totalResults, setTotalResults] = useState<number>(
+    searchMeta?.pagination.total ?? 0
+  );
 
-    //calc startpage. sgould be 1 or 2 less than the current page
-    // const startPage = Math.max(1, page - 2);
+  useEffect(() => {
+    if (searchMeta?.pagination) {
+      const { pageSize = 10, page = 1, total = 0 } = searchMeta.pagination;
+      setPageSize(pageSize);
+      setPage(page);
+      setTotalResults(total);
+      setPageCount(Math.ceil(total / pageSize));
+    }
+  }, [searchMeta]);
 
-    // //calc endpage. should be 2 or 1 more than the current
-    // //if the endpage is
-    // const endPage = Math.min(pageCount, page + 2);
+  const getPageNumbers = (): string[] => {
+    const pages: string[] = [];
+    const pageCount = Math.ceil(totalResults / pageSize);
 
-    // calculate the start and endpage so there are always 5 pages
+    // Calculate start and end page ensuring there are always up to 5 pages shown
     let startPage = Math.max(1, page - 2);
     let endPage = Math.min(pageCount, page + 2);
+
     if (endPage - startPage < 4) {
       if (startPage === 1) {
         endPage = Math.min(pageCount, startPage + 4);
@@ -50,23 +65,16 @@ export function BlogListPagination({
       }
     }
 
-    if (startPage > 1) {
-      // pages.push(1);
-      if (startPage >= 2) {
-        pages.push('...');
-      }
-    }
+    // Add ellipsis if starting page is greater than 1
+    if (startPage > 1) pages.push('...');
 
+    // Add page numbers between startPage and endPage
     for (let i = startPage; i <= endPage; i++) {
-      pages.push(i);
+      pages.push(i.toString());
     }
 
-    if (endPage < pageCount) {
-      if (endPage <= pageCount - 1) {
-        pages.push('...');
-      }
-      // pages.push(pageCount);
-    }
+    // Add ellipsis if ending page is less than total page count
+    if (endPage < pageCount) pages.push('...');
 
     return pages;
   };
@@ -91,37 +99,44 @@ export function BlogListPagination({
   // make it 5 below the min page but greater than 1
   const prevBatch = minPage - 5 > 1 ? minPage - 5 : 1;
 
+  //create a function to tak the page number and update the meta
+  const handlePageChange = (pageNumber: number) => {
+    const newSearchMeta = JSON.parse(JSON.stringify(searchMeta));
+
+    newSearchMeta.pagination.page = pageNumber;
+    updateMeta(newSearchMeta);
+  };
+
   return (
     <Pagination>
       <PaginationContent>
+        {/* Render previous button if not on the first page */}
         {page > 1 && (
           <PaginationItem>
-            <PaginationPrevious
-              href={`?page=${prevBatch}&pageSize=${pageSize}`}
-            />
+            <PaginationPrevious onClick={() => handlePageChange(prevBatch)} />
           </PaginationItem>
         )}
 
-        {getPageNumbers().map((pageNumber, idx) => {
-          if (pageNumber === '...') {
-            return <PaginationEllipsis key={idx} />;
-          }
-
-          return (
-            <PaginationItem key={idx}>
+        {/* Render page numbers and ellipses */}
+        {getPageNumbers().map((pageNumber, index) =>
+          pageNumber === '...' ? (
+            <PaginationEllipsis key={`ellipsis-${index}`} />
+          ) : (
+            <PaginationItem key={`page-${pageNumber}`}>
               <PaginationLink
-                isActive={pageNumber === page}
-                href={`?page=${pageNumber}&pageSize=${pageSize}`}
+                isActive={Number(pageNumber) === page}
+                onClick={() => handlePageChange(Number(pageNumber))}
               >
                 {pageNumber}
               </PaginationLink>
             </PaginationItem>
-          );
-        })}
+          )
+        )}
 
+        {/* Render next button if not on the last page */}
         {page < pageCount && (
           <PaginationItem>
-            <PaginationNext href={`?page=${nextBatch}&pageSize=${pageSize}`} />
+            <PaginationNext onClick={() => handlePageChange(nextBatch)} />
           </PaginationItem>
         )}
       </PaginationContent>
