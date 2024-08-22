@@ -1,4 +1,4 @@
-import { ApolloWrapper } from '../../CMSClient/ApolloWrapper';
+import { ApolloWrapper } from '../../../CMSClient/ApolloWrapper';
 
 export default function Layout({ children }: React.PropsWithChildren) {
   return (

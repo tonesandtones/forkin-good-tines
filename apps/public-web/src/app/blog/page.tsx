@@ -1,7 +1,6 @@
-import { ContentPageHero } from '@sharknado/shared-ui';
-import { DynamicPageContent } from '../../ComponentFactory/DynamicPageContent';
+import Link from 'next/link';
 
-export default function Index({
+export default async function Index({
   searchParams,
 }: {
   searchParams: URLSearchParams;
@@ -15,10 +14,27 @@ export default function Index({
   return (
     <div className="wrapper">
       <div className="container mx-auto">
-        <h1 className="text-4xl font-bold">Welcome to public-web!</h1>
-        {/* <ContentPageHero id={'1'} title={'fooo'} /> */}
-        <DynamicPageContent pageId={'1'} />
-        {/* <BlogList /> */}
+        <h2 className="text-3xl font-bold my-8">All Blogs</h2>
+
+        <div>
+          <Link className="text-xl" href="/blog/servercomponents">
+            Blogs Example (Server Components)
+          </Link>
+          <p>
+            Simple master detail demo using dynaimc routes and server
+            components.
+          </p>
+        </div>
+
+        <div>
+          <Link className="text-xl" href="/blog/clientcomponents">
+            Blogs Example (Client Components)
+          </Link>
+          <p>
+            Simple master detail demo using dynaimc routes and client
+            components.
+          </p>
+        </div>
       </div>
     </div>
   );

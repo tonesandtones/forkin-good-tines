@@ -2,36 +2,23 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
-export type MakeEmpty<
-  T extends { [key: string]: unknown },
-  K extends keyof T
-> = { [_ in K]?: never };
-export type Incremental<T> =
-  | T
-  | {
-      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
-    };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
-  DateTime: { input: any; output: any };
-  JSON: { input: any; output: any };
-  PageBodyDynamicZoneInput: { input: any; output: any };
-  Upload: { input: any; output: any };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  DateTime: { input: any; output: any; }
+  JSON: { input: any; output: any; }
+  PageBodyDynamicZoneInput: { input: any; output: any; }
+  Upload: { input: any; output: any; }
 };
 
 export type Blogpost = {
@@ -124,6 +111,7 @@ export type ComponentContentCallToAction = {
   title?: Maybe<Scalars['String']['output']>;
 };
 
+
 export type ComponentContentCallToActionButtonsArgs = {
   filters?: InputMaybe<ComponentElementsButtonFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
@@ -139,6 +127,7 @@ export type ComponentContentPageHero = {
   text?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
+
 
 export type ComponentContentPageHeroButtonsArgs = {
   filters?: InputMaybe<ComponentElementsButtonFiltersInput>;
@@ -192,7 +181,7 @@ export type DateTimeFilterInput = {
 
 export enum Enum_Componentcontentbloglisting_View {
   Grid = 'Grid',
-  List = 'List',
+  List = 'List'
 }
 
 export enum Enum_Componentelementsbutton_Variant {
@@ -201,7 +190,7 @@ export enum Enum_Componentelementsbutton_Variant {
   Ghost = 'ghost',
   Link = 'link',
   Outline = 'outline',
-  Secondary = 'secondary',
+  Secondary = 'secondary'
 }
 
 export type Error = {
@@ -241,19 +230,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph =
-  | Blogpost
-  | ComponentContentBlogListing
-  | ComponentContentCallToAction
-  | ComponentContentPageHero
-  | ComponentElementsButton
-  | I18NLocale
-  | Page
-  | UploadFile
-  | UploadFolder
-  | UsersPermissionsPermission
-  | UsersPermissionsRole
-  | UsersPermissionsUser;
+export type GenericMorph = Blogpost | ComponentContentBlogListing | ComponentContentCallToAction | ComponentContentPageHero | ComponentElementsButton | I18NLocale | Page | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -409,71 +386,88 @@ export type Mutation = {
   upload: UploadFileEntityResponse;
 };
 
+
 export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
 };
 
+
 export type MutationCreateBlogpostArgs = {
   data: BlogpostInput;
 };
+
 
 export type MutationCreatePageArgs = {
   data: PageInput;
 };
 
+
 export type MutationCreateUploadFileArgs = {
   data: UploadFileInput;
 };
+
 
 export type MutationCreateUploadFolderArgs = {
   data: UploadFolderInput;
 };
 
+
 export type MutationCreateUsersPermissionsRoleArgs = {
   data: UsersPermissionsRoleInput;
 };
+
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
 };
 
+
 export type MutationDeleteBlogpostArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type MutationDeletePageArgs = {
   id: Scalars['ID']['input'];
 };
 
+
 export type MutationDeleteUploadFileArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type MutationDeleteUploadFolderArgs = {
   id: Scalars['ID']['input'];
 };
 
+
 export type MutationDeleteUsersPermissionsRoleArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type MutationDeleteUsersPermissionsUserArgs = {
   id: Scalars['ID']['input'];
 };
 
+
 export type MutationEmailConfirmationArgs = {
   confirmation: Scalars['String']['input'];
 };
+
 
 export type MutationForgotPasswordArgs = {
   email: Scalars['String']['input'];
 };
 
+
 export type MutationLoginArgs = {
   input: UsersPermissionsLoginInput;
 };
+
 
 export type MutationMultipleUploadArgs = {
   field?: InputMaybe<Scalars['String']['input']>;
@@ -482,13 +476,16 @@ export type MutationMultipleUploadArgs = {
   refId?: InputMaybe<Scalars['ID']['input']>;
 };
 
+
 export type MutationRegisterArgs = {
   input: UsersPermissionsRegisterInput;
 };
 
+
 export type MutationRemoveFileArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type MutationResetPasswordArgs = {
   code: Scalars['String']['input'];
@@ -496,40 +493,48 @@ export type MutationResetPasswordArgs = {
   passwordConfirmation: Scalars['String']['input'];
 };
 
+
 export type MutationUpdateBlogpostArgs = {
   data: BlogpostInput;
   id: Scalars['ID']['input'];
 };
+
 
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID']['input'];
   info?: InputMaybe<FileInfoInput>;
 };
 
+
 export type MutationUpdatePageArgs = {
   data: PageInput;
   id: Scalars['ID']['input'];
 };
+
 
 export type MutationUpdateUploadFileArgs = {
   data: UploadFileInput;
   id: Scalars['ID']['input'];
 };
 
+
 export type MutationUpdateUploadFolderArgs = {
   data: UploadFolderInput;
   id: Scalars['ID']['input'];
 };
+
 
 export type MutationUpdateUsersPermissionsRoleArgs = {
   data: UsersPermissionsRoleInput;
   id: Scalars['ID']['input'];
 };
 
+
 export type MutationUpdateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
   id: Scalars['ID']['input'];
 };
+
 
 export type MutationUploadArgs = {
   field?: InputMaybe<Scalars['String']['input']>;
@@ -548,11 +553,7 @@ export type Page = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
-export type PageBodyDynamicZone =
-  | ComponentContentBlogListing
-  | ComponentContentCallToAction
-  | ComponentContentPageHero
-  | Error;
+export type PageBodyDynamicZone = ComponentContentBlogListing | ComponentContentCallToAction | ComponentContentPageHero | Error;
 
 export type PageEntity = {
   __typename?: 'PageEntity';
@@ -605,7 +606,7 @@ export type PaginationArg = {
 
 export enum PublicationState {
   Live = 'LIVE',
-  Preview = 'PREVIEW',
+  Preview = 'PREVIEW'
 }
 
 export type Query = {
@@ -627,9 +628,11 @@ export type Query = {
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
 };
 
+
 export type QueryBlogpostArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
+
 
 export type QueryBlogpostsArgs = {
   filters?: InputMaybe<BlogpostFiltersInput>;
@@ -638,9 +641,11 @@ export type QueryBlogpostsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+
 export type QueryI18NLocaleArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
+
 
 export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
@@ -648,9 +653,11 @@ export type QueryI18NLocalesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+
 export type QueryPageArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
+
 
 export type QueryPagesArgs = {
   filters?: InputMaybe<PageFiltersInput>;
@@ -659,9 +666,11 @@ export type QueryPagesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+
 export type QueryUploadFileArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
+
 
 export type QueryUploadFilesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
@@ -669,9 +678,11 @@ export type QueryUploadFilesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+
 export type QueryUploadFolderArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
+
 
 export type QueryUploadFoldersArgs = {
   filters?: InputMaybe<UploadFolderFiltersInput>;
@@ -679,9 +690,11 @@ export type QueryUploadFoldersArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+
 export type QueryUsersPermissionsRoleArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
+
 
 export type QueryUsersPermissionsRolesArgs = {
   filters?: InputMaybe<UsersPermissionsRoleFiltersInput>;
@@ -689,9 +702,11 @@ export type QueryUsersPermissionsRolesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+
 export type QueryUsersPermissionsUserArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
+
 
 export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
@@ -828,11 +843,13 @@ export type UploadFolder = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
+
 export type UploadFolderChildrenArgs = {
   filters?: InputMaybe<UploadFolderFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
+
 
 export type UploadFolderFilesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
@@ -978,11 +995,13 @@ export type UsersPermissionsRole = {
   users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
 };
 
+
 export type UsersPermissionsRolePermissionsArgs = {
   filters?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
+
 
 export type UsersPermissionsRoleUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
@@ -1108,203 +1127,57 @@ export type BlogpostsQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']['input']>;
   pageSize?: InputMaybe<Scalars['Int']['input']>;
   filters?: InputMaybe<BlogpostFiltersInput>;
-  sort?: InputMaybe<
-    | Array<InputMaybe<Scalars['String']['input']>>
-    | InputMaybe<Scalars['String']['input']>
-  >;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
 }>;
 
-export type BlogpostsQuery = {
-  __typename?: 'Query';
-  blogposts?: {
-    __typename?: 'BlogpostEntityResponseCollection';
-    data: Array<{
-      __typename?: 'BlogpostEntity';
-      id?: string | null;
-      attributes?: {
-        __typename?: 'Blogpost';
-        title?: string | null;
-        slug?: string | null;
-        createdAt?: any | null;
-        updatedAt?: any | null;
-        publishedAt?: any | null;
-        description?: string | null;
-      } | null;
-    }>;
-    meta: {
-      __typename?: 'ResponseCollectionMeta';
-      pagination: {
-        __typename?: 'Pagination';
-        total: number;
-        page: number;
-        pageSize: number;
-        pageCount: number;
-      };
-    };
-  } | null;
-};
+
+export type BlogpostsQuery = { __typename?: 'Query', blogposts?: { __typename?: 'BlogpostEntityResponseCollection', data: Array<{ __typename?: 'BlogpostEntity', id?: string | null, attributes?: { __typename?: 'Blogpost', title?: string | null, slug?: string | null, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, description?: string | null } | null }>, meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, page: number, pageSize: number, pageCount: number } } } | null };
 
 export type BlogPostDetailQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']['input']>;
 }>;
 
-export type BlogPostDetailQuery = {
-  __typename?: 'Query';
-  blogpost?: {
-    __typename?: 'BlogpostEntityResponse';
-    data?: {
-      __typename?: 'BlogpostEntity';
-      id?: string | null;
-      attributes?: {
-        __typename?: 'Blogpost';
-        title?: string | null;
-        slug?: string | null;
-        description?: string | null;
-        createdAt?: any | null;
-        updatedAt?: any | null;
-        publishedAt?: any | null;
-      } | null;
-    } | null;
-  } | null;
-};
+
+export type BlogPostDetailQuery = { __typename?: 'Query', blogpost?: { __typename?: 'BlogpostEntityResponse', data?: { __typename?: 'BlogpostEntity', id?: string | null, attributes?: { __typename?: 'Blogpost', title?: string | null, slug?: string | null, description?: string | null, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null } | null } | null } | null };
 
 export type CreateBlogpostMutationVariables = Exact<{
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
 }>;
 
-export type CreateBlogpostMutation = {
-  __typename?: 'Mutation';
-  createBlogpost?: {
-    __typename?: 'BlogpostEntityResponse';
-    data?: { __typename?: 'BlogpostEntity'; id?: string | null } | null;
-  } | null;
-};
 
-export type PageQueryVariables = Exact<{
-  id?: InputMaybe<Scalars['ID']['input']>;
-}>;
+export type CreateBlogpostMutation = { __typename?: 'Mutation', createBlogpost?: { __typename?: 'BlogpostEntityResponse', data?: { __typename?: 'BlogpostEntity', id?: string | null } | null } | null };
 
-export type PageQuery = {
-  __typename?: 'Query';
-  page?: {
-    __typename?: 'PageEntityResponse';
-    data?: {
-      __typename?: 'PageEntity';
-      id?: string | null;
-      attributes?: {
-        __typename?: 'Page';
-        title?: string | null;
-        createdAt?: any | null;
-        updatedAt?: any | null;
-        publishedAt?: any | null;
-        body?: Array<
-          | {
-              __typename?: 'ComponentContentBlogListing';
-              id: string;
-              view?: Enum_Componentcontentbloglisting_View | null;
-              number_of_cols?: number | null;
-              items_per_page?: number | null;
-            }
-          | {
-              __typename?: 'ComponentContentCallToAction';
-              title?: string | null;
-              subtitle?: string | null;
-              text?: string | null;
-              id: string;
-              buttons?: Array<{
-                __typename?: 'ComponentElementsButton';
-                id: string;
-                label?: string | null;
-                variant: Enum_Componentelementsbutton_Variant;
-                url?: string | null;
-                open_in_new_window?: boolean | null;
-              } | null> | null;
-              image?: {
-                __typename?: 'UploadFileEntityResponse';
-                data?: {
-                  __typename?: 'UploadFileEntity';
-                  id?: string | null;
-                  attributes?: {
-                    __typename?: 'UploadFile';
-                    alternativeText?: string | null;
-                    caption?: string | null;
-                    url: string;
-                    name: string;
-                  } | null;
-                } | null;
-              } | null;
-            }
-          | {
-              __typename?: 'ComponentContentPageHero';
-              id: string;
-              title?: string | null;
-              subtitle?: string | null;
-              text?: string | null;
-              background_image?: {
-                __typename?: 'UploadFileEntityResponse';
-                data?: {
-                  __typename?: 'UploadFileEntity';
-                  attributes?: {
-                    __typename?: 'UploadFile';
-                    name: string;
-                    alternativeText?: string | null;
-                    caption?: string | null;
-                    url: string;
-                  } | null;
-                } | null;
-              } | null;
-              buttons?: Array<{
-                __typename?: 'ComponentElementsButton';
-                id: string;
-                label?: string | null;
-                variant: Enum_Componentelementsbutton_Variant;
-                url?: string | null;
-                open_in_new_window?: boolean | null;
-              } | null> | null;
-            }
-          | { __typename?: 'Error' }
-          | null
-        > | null;
-      } | null;
-    } | null;
-  } | null;
-};
 
 export const BlogpostsDocument = gql`
-  query Blogposts(
-    $page: Int
-    $pageSize: Int
-    $filters: BlogpostFiltersInput
-    $sort: [String]
+    query Blogposts($page: Int, $pageSize: Int, $filters: BlogpostFiltersInput, $sort: [String]) {
+  blogposts(
+    pagination: {page: $page, pageSize: $pageSize}
+    sort: $sort
+    filters: $filters
   ) {
-    blogposts(
-      pagination: { page: $page, pageSize: $pageSize }
-      sort: $sort
-      filters: $filters
-    ) {
-      data {
-        id
-        attributes {
-          title
-          slug
-          createdAt
-          updatedAt
-          publishedAt
-          description
-        }
+    data {
+      id
+      attributes {
+        title
+        slug
+        createdAt
+        updatedAt
+        publishedAt
+        description
       }
-      meta {
-        pagination {
-          total
-          page
-          pageSize
-          pageCount
-        }
+    }
+    meta {
+      pagination {
+        total
+        page
+        pageSize
+        pageCount
       }
     }
   }
-`;
+}
+    `;
 
 /**
  * __useBlogpostsQuery__
@@ -1325,67 +1198,39 @@ export const BlogpostsDocument = gql`
  *   },
  * });
  */
-export function useBlogpostsQuery(
-  baseOptions?: Apollo.QueryHookOptions<BlogpostsQuery, BlogpostsQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<BlogpostsQuery, BlogpostsQueryVariables>(
-    BlogpostsDocument,
-    options
-  );
-}
-export function useBlogpostsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    BlogpostsQuery,
-    BlogpostsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<BlogpostsQuery, BlogpostsQueryVariables>(
-    BlogpostsDocument,
-    options
-  );
-}
-export function useBlogpostsSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<
-    BlogpostsQuery,
-    BlogpostsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<BlogpostsQuery, BlogpostsQueryVariables>(
-    BlogpostsDocument,
-    options
-  );
-}
-export type BlogpostsQueryHookResult = ReturnType<typeof useBlogpostsQuery>;
-export type BlogpostsLazyQueryHookResult = ReturnType<
-  typeof useBlogpostsLazyQuery
->;
-export type BlogpostsSuspenseQueryHookResult = ReturnType<
-  typeof useBlogpostsSuspenseQuery
->;
-export type BlogpostsQueryResult = Apollo.QueryResult<
-  BlogpostsQuery,
-  BlogpostsQueryVariables
->;
-export const BlogPostDetailDocument = gql`
-  query BlogPostDetail($id: ID) {
-    blogpost(id: $id) {
-      data {
-        id
-        attributes {
-          title
-          slug
-          description
-          createdAt
-          updatedAt
-          publishedAt
+export function useBlogpostsQuery(baseOptions?: Apollo.QueryHookOptions<BlogpostsQuery, BlogpostsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<BlogpostsQuery, BlogpostsQueryVariables>(BlogpostsDocument, options);
+      }
+export function useBlogpostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlogpostsQuery, BlogpostsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<BlogpostsQuery, BlogpostsQueryVariables>(BlogpostsDocument, options);
         }
+export function useBlogpostsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<BlogpostsQuery, BlogpostsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<BlogpostsQuery, BlogpostsQueryVariables>(BlogpostsDocument, options);
+        }
+export type BlogpostsQueryHookResult = ReturnType<typeof useBlogpostsQuery>;
+export type BlogpostsLazyQueryHookResult = ReturnType<typeof useBlogpostsLazyQuery>;
+export type BlogpostsSuspenseQueryHookResult = ReturnType<typeof useBlogpostsSuspenseQuery>;
+export type BlogpostsQueryResult = Apollo.QueryResult<BlogpostsQuery, BlogpostsQueryVariables>;
+export const BlogPostDetailDocument = gql`
+    query BlogPostDetail($id: ID) {
+  blogpost(id: $id) {
+    data {
+      id
+      attributes {
+        title
+        slug
+        description
+        createdAt
+        updatedAt
+        publishedAt
       }
     }
   }
-`;
+}
+    `;
 
 /**
  * __useBlogPostDetailQuery__
@@ -1403,68 +1248,32 @@ export const BlogPostDetailDocument = gql`
  *   },
  * });
  */
-export function useBlogPostDetailQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    BlogPostDetailQuery,
-    BlogPostDetailQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<BlogPostDetailQuery, BlogPostDetailQueryVariables>(
-    BlogPostDetailDocument,
-    options
-  );
-}
-export function useBlogPostDetailLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    BlogPostDetailQuery,
-    BlogPostDetailQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<BlogPostDetailQuery, BlogPostDetailQueryVariables>(
-    BlogPostDetailDocument,
-    options
-  );
-}
-export function useBlogPostDetailSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<
-    BlogPostDetailQuery,
-    BlogPostDetailQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<
-    BlogPostDetailQuery,
-    BlogPostDetailQueryVariables
-  >(BlogPostDetailDocument, options);
-}
-export type BlogPostDetailQueryHookResult = ReturnType<
-  typeof useBlogPostDetailQuery
->;
-export type BlogPostDetailLazyQueryHookResult = ReturnType<
-  typeof useBlogPostDetailLazyQuery
->;
-export type BlogPostDetailSuspenseQueryHookResult = ReturnType<
-  typeof useBlogPostDetailSuspenseQuery
->;
-export type BlogPostDetailQueryResult = Apollo.QueryResult<
-  BlogPostDetailQuery,
-  BlogPostDetailQueryVariables
->;
-export const CreateBlogpostDocument = gql`
-  mutation CreateBlogpost($title: String, $description: String) {
-    createBlogpost(data: { title: $title, description: $description }) {
-      data {
-        id
+export function useBlogPostDetailQuery(baseOptions?: Apollo.QueryHookOptions<BlogPostDetailQuery, BlogPostDetailQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<BlogPostDetailQuery, BlogPostDetailQueryVariables>(BlogPostDetailDocument, options);
       }
+export function useBlogPostDetailLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlogPostDetailQuery, BlogPostDetailQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<BlogPostDetailQuery, BlogPostDetailQueryVariables>(BlogPostDetailDocument, options);
+        }
+export function useBlogPostDetailSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<BlogPostDetailQuery, BlogPostDetailQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<BlogPostDetailQuery, BlogPostDetailQueryVariables>(BlogPostDetailDocument, options);
+        }
+export type BlogPostDetailQueryHookResult = ReturnType<typeof useBlogPostDetailQuery>;
+export type BlogPostDetailLazyQueryHookResult = ReturnType<typeof useBlogPostDetailLazyQuery>;
+export type BlogPostDetailSuspenseQueryHookResult = ReturnType<typeof useBlogPostDetailSuspenseQuery>;
+export type BlogPostDetailQueryResult = Apollo.QueryResult<BlogPostDetailQuery, BlogPostDetailQueryVariables>;
+export const CreateBlogpostDocument = gql`
+    mutation CreateBlogpost($title: String, $description: String) {
+  createBlogpost(data: {title: $title, description: $description}) {
+    data {
+      id
     }
   }
-`;
-export type CreateBlogpostMutationFn = Apollo.MutationFunction<
-  CreateBlogpostMutation,
-  CreateBlogpostMutationVariables
->;
+}
+    `;
+export type CreateBlogpostMutationFn = Apollo.MutationFunction<CreateBlogpostMutation, CreateBlogpostMutationVariables>;
 
 /**
  * __useCreateBlogpostMutation__
@@ -1484,141 +1293,10 @@ export type CreateBlogpostMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useCreateBlogpostMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    CreateBlogpostMutation,
-    CreateBlogpostMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    CreateBlogpostMutation,
-    CreateBlogpostMutationVariables
-  >(CreateBlogpostDocument, options);
-}
-export type CreateBlogpostMutationHookResult = ReturnType<
-  typeof useCreateBlogpostMutation
->;
-export type CreateBlogpostMutationResult =
-  Apollo.MutationResult<CreateBlogpostMutation>;
-export type CreateBlogpostMutationOptions = Apollo.BaseMutationOptions<
-  CreateBlogpostMutation,
-  CreateBlogpostMutationVariables
->;
-export const PageDocument = gql`
-  query Page($id: ID) {
-    page(id: $id) {
-      data {
-        id
-        attributes {
-          title
-          body {
-            ... on ComponentContentPageHero {
-              id
-              title
-              subtitle
-              background_image {
-                data {
-                  attributes {
-                    name
-                    alternativeText
-                    caption
-                    url
-                  }
-                }
-              }
-              buttons {
-                id
-                label
-                variant
-                url
-                open_in_new_window
-              }
-              text
-            }
-            ... on ComponentContentCallToAction {
-              title
-              subtitle
-              text
-              buttons {
-                id
-                label
-                variant
-                url
-                open_in_new_window
-              }
-              image {
-                data {
-                  attributes {
-                    alternativeText
-                    caption
-                    url
-                    name
-                  }
-                  id
-                }
-              }
-              id
-            }
-            ... on ComponentContentBlogListing {
-              id
-              view
-              number_of_cols
-              items_per_page
-            }
-          }
-          createdAt
-          updatedAt
-          publishedAt
-        }
+export function useCreateBlogpostMutation(baseOptions?: Apollo.MutationHookOptions<CreateBlogpostMutation, CreateBlogpostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateBlogpostMutation, CreateBlogpostMutationVariables>(CreateBlogpostDocument, options);
       }
-    }
-  }
-`;
-
-/**
- * __usePageQuery__
- *
- * To run a query within a React component, call `usePageQuery` and pass it any options that fit your needs.
- * When your component renders, `usePageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = usePageQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function usePageQuery(
-  baseOptions?: Apollo.QueryHookOptions<PageQuery, PageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<PageQuery, PageQueryVariables>(PageDocument, options);
-}
-export function usePageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<PageQuery, PageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<PageQuery, PageQueryVariables>(
-    PageDocument,
-    options
-  );
-}
-export function usePageSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<PageQuery, PageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<PageQuery, PageQueryVariables>(
-    PageDocument,
-    options
-  );
-}
-export type PageQueryHookResult = ReturnType<typeof usePageQuery>;
-export type PageLazyQueryHookResult = ReturnType<typeof usePageLazyQuery>;
-export type PageSuspenseQueryHookResult = ReturnType<
-  typeof usePageSuspenseQuery
->;
-export type PageQueryResult = Apollo.QueryResult<PageQuery, PageQueryVariables>;
+export type CreateBlogpostMutationHookResult = ReturnType<typeof useCreateBlogpostMutation>;
+export type CreateBlogpostMutationResult = Apollo.MutationResult<CreateBlogpostMutation>;
+export type CreateBlogpostMutationOptions = Apollo.BaseMutationOptions<CreateBlogpostMutation, CreateBlogpostMutationVariables>;
