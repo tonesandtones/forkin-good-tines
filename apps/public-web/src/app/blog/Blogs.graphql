@@ -18,6 +18,8 @@ query Blogposts(
         updatedAt
         publishedAt
         description
+        author
+        body
       }
     }
     meta {
@@ -38,17 +40,31 @@ query BlogPostDetail($id: ID) {
       attributes {
         title
         slug
-        description
         createdAt
         updatedAt
         publishedAt
+        description
+        author
+        body
       }
     }
   }
 }
 
-mutation CreateBlogpost($title: String, $description: String) {
-  createBlogpost(data: { title: $title, description: $description }) {
+mutation CreateBlogpost(
+  $title: String
+  $description: String
+  $author: String
+  $body: String
+) {
+  createBlogpost(
+    data: {
+      title: $title
+      description: $description
+      author: $author
+      body: $body
+    }
+  ) {
     data {
       id
     }

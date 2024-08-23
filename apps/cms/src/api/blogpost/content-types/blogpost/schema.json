@@ -21,6 +21,12 @@
     },
     "description": {
       "type": "text"
+    },
+    "author": {
+      "type": "string"
+    },
+    "body": {
+      "type": "richtext"
     }
   }
 }

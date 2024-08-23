@@ -1,6 +1,12 @@
 import { BlogpostEntity } from '@sharknado/cms-api';
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle } from '../../card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '../../card';
 
 interface BlogListProps {
   data: BlogpostEntity[];
@@ -18,6 +24,7 @@ const BlogList = ({ data, detailPath }: BlogListProps) => {
                 {post.attributes?.title}
               </Link>
             </CardTitle>
+            <CardDescription>{post.attributes?.author}</CardDescription>
           </CardHeader>
           <CardContent>
             <p>{post.attributes?.description}</p>

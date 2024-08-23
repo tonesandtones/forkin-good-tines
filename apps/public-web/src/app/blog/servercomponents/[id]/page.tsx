@@ -31,6 +31,8 @@ export default async function BlogDetail({
       <BlogItemDetail
         title={data.blogpost?.data?.attributes?.title}
         description={data.blogpost?.data?.attributes?.description}
+        author={data.blogpost?.data?.attributes?.author}
+        body={data.blogpost?.data?.attributes?.body}
       />
     </div>
   );

@@ -377,6 +377,8 @@ export interface ApiBlogpostBlogpost extends Schema.CollectionType {
     title: Attribute.String;
     slug: Attribute.UID<'api::blogpost.blogpost', 'title'>;
     description: Attribute.Text;
+    author: Attribute.String;
+    body: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

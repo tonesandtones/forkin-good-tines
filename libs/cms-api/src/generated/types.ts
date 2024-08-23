@@ -17,12 +17,13 @@ export type Scalars = {
   Float: { input: number; output: number; }
   DateTime: { input: any; output: any; }
   JSON: { input: any; output: any; }
-  PageBodyDynamicZoneInput: { input: any; output: any; }
   Upload: { input: any; output: any; }
 };
 
 export type Blogpost = {
   __typename?: 'Blogpost';
+  author?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -50,6 +51,8 @@ export type BlogpostEntityResponseCollection = {
 
 export type BlogpostFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<BlogpostFiltersInput>>>;
+  author?: InputMaybe<StringFilterInput>;
+  body?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
@@ -62,6 +65,8 @@ export type BlogpostFiltersInput = {
 };
 
 export type BlogpostInput = {
+  author?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -93,67 +98,6 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type ComponentContentBlogListing = {
-  __typename?: 'ComponentContentBlogListing';
-  id: Scalars['ID']['output'];
-  items_per_page?: Maybe<Scalars['Int']['output']>;
-  number_of_cols?: Maybe<Scalars['Int']['output']>;
-  view?: Maybe<Enum_Componentcontentbloglisting_View>;
-};
-
-export type ComponentContentCallToAction = {
-  __typename?: 'ComponentContentCallToAction';
-  buttons?: Maybe<Array<Maybe<ComponentElementsButton>>>;
-  id: Scalars['ID']['output'];
-  image?: Maybe<UploadFileEntityResponse>;
-  subtitle?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type ComponentContentCallToActionButtonsArgs = {
-  filters?: InputMaybe<ComponentElementsButtonFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type ComponentContentPageHero = {
-  __typename?: 'ComponentContentPageHero';
-  background_image?: Maybe<UploadFileEntityResponse>;
-  buttons?: Maybe<Array<Maybe<ComponentElementsButton>>>;
-  id: Scalars['ID']['output'];
-  subtitle?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type ComponentContentPageHeroButtonsArgs = {
-  filters?: InputMaybe<ComponentElementsButtonFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type ComponentElementsButton = {
-  __typename?: 'ComponentElementsButton';
-  id: Scalars['ID']['output'];
-  label?: Maybe<Scalars['String']['output']>;
-  open_in_new_window?: Maybe<Scalars['Boolean']['output']>;
-  url?: Maybe<Scalars['String']['output']>;
-  variant: Enum_Componentelementsbutton_Variant;
-};
-
-export type ComponentElementsButtonFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentElementsButtonFiltersInput>>>;
-  label?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<ComponentElementsButtonFiltersInput>;
-  open_in_new_window?: InputMaybe<BooleanFilterInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentElementsButtonFiltersInput>>>;
-  url?: InputMaybe<StringFilterInput>;
-  variant?: InputMaybe<StringFilterInput>;
-};
-
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
@@ -177,26 +121,6 @@ export type DateTimeFilterInput = {
   null?: InputMaybe<Scalars['Boolean']['input']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   startsWith?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export enum Enum_Componentcontentbloglisting_View {
-  Grid = 'Grid',
-  List = 'List'
-}
-
-export enum Enum_Componentelementsbutton_Variant {
-  Default = 'default',
-  Destructive = 'destructive',
-  Ghost = 'ghost',
-  Link = 'link',
-  Outline = 'outline',
-  Secondary = 'secondary'
-}
-
-export type Error = {
-  __typename?: 'Error';
-  code: Scalars['String']['output'];
-  message?: Maybe<Scalars['String']['output']>;
 };
 
 export type FileInfoInput = {
@@ -230,7 +154,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = Blogpost | ComponentContentBlogListing | ComponentContentCallToAction | ComponentContentPageHero | ComponentElementsButton | I18NLocale | Page | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Blogpost | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -348,7 +272,6 @@ export type Mutation = {
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createBlogpost?: Maybe<BlogpostEntityResponse>;
-  createPage?: Maybe<PageEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
@@ -356,7 +279,6 @@ export type Mutation = {
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteBlogpost?: Maybe<BlogpostEntityResponse>;
-  deletePage?: Maybe<PageEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -376,7 +298,6 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateBlogpost?: Maybe<BlogpostEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
-  updatePage?: Maybe<PageEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -396,11 +317,6 @@ export type MutationChangePasswordArgs = {
 
 export type MutationCreateBlogpostArgs = {
   data: BlogpostInput;
-};
-
-
-export type MutationCreatePageArgs = {
-  data: PageInput;
 };
 
 
@@ -425,11 +341,6 @@ export type MutationCreateUsersPermissionsUserArgs = {
 
 
 export type MutationDeleteBlogpostArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDeletePageArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -506,12 +417,6 @@ export type MutationUpdateFileInfoArgs = {
 };
 
 
-export type MutationUpdatePageArgs = {
-  data: PageInput;
-  id: Scalars['ID']['input'];
-};
-
-
 export type MutationUpdateUploadFileArgs = {
   data: UploadFileInput;
   id: Scalars['ID']['input'];
@@ -544,51 +449,6 @@ export type MutationUploadArgs = {
   refId?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export type Page = {
-  __typename?: 'Page';
-  body?: Maybe<Array<Maybe<PageBodyDynamicZone>>>;
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-export type PageBodyDynamicZone = ComponentContentBlogListing | ComponentContentCallToAction | ComponentContentPageHero | Error;
-
-export type PageEntity = {
-  __typename?: 'PageEntity';
-  attributes?: Maybe<Page>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type PageEntityResponse = {
-  __typename?: 'PageEntityResponse';
-  data?: Maybe<PageEntity>;
-};
-
-export type PageEntityResponseCollection = {
-  __typename?: 'PageEntityResponseCollection';
-  data: Array<PageEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type PageFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  not?: InputMaybe<PageFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
-  title?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type PageInput = {
-  body?: InputMaybe<Array<Scalars['PageBodyDynamicZoneInput']['input']>>;
-  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type Pagination = {
   __typename?: 'Pagination';
   page: Scalars['Int']['output'];
@@ -616,8 +476,6 @@ export type Query = {
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
-  page?: Maybe<PageEntityResponse>;
-  pages?: Maybe<PageEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -650,19 +508,6 @@ export type QueryI18NLocaleArgs = {
 export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryPageArgs = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryPagesArgs = {
-  filters?: InputMaybe<PageFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
@@ -1131,18 +976,20 @@ export type BlogpostsQueryVariables = Exact<{
 }>;
 
 
-export type BlogpostsQuery = { __typename?: 'Query', blogposts?: { __typename?: 'BlogpostEntityResponseCollection', data: Array<{ __typename?: 'BlogpostEntity', id?: string | null, attributes?: { __typename?: 'Blogpost', title?: string | null, slug?: string | null, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, description?: string | null } | null }>, meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, page: number, pageSize: number, pageCount: number } } } | null };
+export type BlogpostsQuery = { __typename?: 'Query', blogposts?: { __typename?: 'BlogpostEntityResponseCollection', data: Array<{ __typename?: 'BlogpostEntity', id?: string | null, attributes?: { __typename?: 'Blogpost', title?: string | null, slug?: string | null, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, description?: string | null, author?: string | null, body?: string | null } | null }>, meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, page: number, pageSize: number, pageCount: number } } } | null };
 
 export type BlogPostDetailQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']['input']>;
 }>;
 
 
-export type BlogPostDetailQuery = { __typename?: 'Query', blogpost?: { __typename?: 'BlogpostEntityResponse', data?: { __typename?: 'BlogpostEntity', id?: string | null, attributes?: { __typename?: 'Blogpost', title?: string | null, slug?: string | null, description?: string | null, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null } | null } | null } | null };
+export type BlogPostDetailQuery = { __typename?: 'Query', blogpost?: { __typename?: 'BlogpostEntityResponse', data?: { __typename?: 'BlogpostEntity', id?: string | null, attributes?: { __typename?: 'Blogpost', title?: string | null, slug?: string | null, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, description?: string | null, author?: string | null, body?: string | null } | null } | null } | null };
 
 export type CreateBlogpostMutationVariables = Exact<{
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
+  author?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
@@ -1165,6 +1012,8 @@ export const BlogpostsDocument = gql`
         updatedAt
         publishedAt
         description
+        author
+        body
       }
     }
     meta {
@@ -1222,10 +1071,12 @@ export const BlogPostDetailDocument = gql`
       attributes {
         title
         slug
-        description
         createdAt
         updatedAt
         publishedAt
+        description
+        author
+        body
       }
     }
   }
@@ -1265,8 +1116,10 @@ export type BlogPostDetailLazyQueryHookResult = ReturnType<typeof useBlogPostDet
 export type BlogPostDetailSuspenseQueryHookResult = ReturnType<typeof useBlogPostDetailSuspenseQuery>;
 export type BlogPostDetailQueryResult = Apollo.QueryResult<BlogPostDetailQuery, BlogPostDetailQueryVariables>;
 export const CreateBlogpostDocument = gql`
-    mutation CreateBlogpost($title: String, $description: String) {
-  createBlogpost(data: {title: $title, description: $description}) {
+    mutation CreateBlogpost($title: String, $description: String, $author: String, $body: String) {
+  createBlogpost(
+    data: {title: $title, description: $description, author: $author, body: $body}
+  ) {
     data {
       id
     }
@@ -1290,6 +1143,8 @@ export type CreateBlogpostMutationFn = Apollo.MutationFunction<CreateBlogpostMut
  *   variables: {
  *      title: // value for 'title'
  *      description: // value for 'description'
+ *      author: // value for 'author'
+ *      body: // value for 'body'
  *   },
  * });
  */
