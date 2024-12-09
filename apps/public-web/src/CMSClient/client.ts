@@ -10,7 +10,7 @@ const { getClient, query, PreloadQuery } = registerApolloClient(() => {
     link: new HttpLink({
       uri: GRAPHQL_URI,
       // Uncomment and customize fetchOptions if you need to bypass result caching.
-      // fetchOptions: { cache: 'no-store' },
+      fetchOptions: { cache: 'no-store' },
     }),
   });
 });
