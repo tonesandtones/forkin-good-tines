@@ -12,7 +12,8 @@
     "deploy": "strapi deploy",
     "develop": "strapi develop",
     "start": "strapi start",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "generate-types": "strapi ts:generate-types"
   },
   "dependencies": {
     "@creazy231/strapi-plugin-apollo-sandbox": "^0.0.15",
