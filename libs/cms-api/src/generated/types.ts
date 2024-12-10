@@ -154,7 +154,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = Blogpost | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Blogpost | I18NLocale | NewsCategory | Newspost | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -272,6 +272,9 @@ export type Mutation = {
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createBlogpost?: Maybe<BlogpostEntityResponse>;
+  createNewsCategory?: Maybe<NewsCategoryEntityResponse>;
+  createNewspost?: Maybe<NewspostEntityResponse>;
+  createTag?: Maybe<TagEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
@@ -279,6 +282,9 @@ export type Mutation = {
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteBlogpost?: Maybe<BlogpostEntityResponse>;
+  deleteNewsCategory?: Maybe<NewsCategoryEntityResponse>;
+  deleteNewspost?: Maybe<NewspostEntityResponse>;
+  deleteTag?: Maybe<TagEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -298,6 +304,9 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateBlogpost?: Maybe<BlogpostEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
+  updateNewsCategory?: Maybe<NewsCategoryEntityResponse>;
+  updateNewspost?: Maybe<NewspostEntityResponse>;
+  updateTag?: Maybe<TagEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -317,6 +326,21 @@ export type MutationChangePasswordArgs = {
 
 export type MutationCreateBlogpostArgs = {
   data: BlogpostInput;
+};
+
+
+export type MutationCreateNewsCategoryArgs = {
+  data: NewsCategoryInput;
+};
+
+
+export type MutationCreateNewspostArgs = {
+  data: NewspostInput;
+};
+
+
+export type MutationCreateTagArgs = {
+  data: TagInput;
 };
 
 
@@ -341,6 +365,21 @@ export type MutationCreateUsersPermissionsUserArgs = {
 
 
 export type MutationDeleteBlogpostArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteNewsCategoryArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteNewspostArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteTagArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -417,6 +456,24 @@ export type MutationUpdateFileInfoArgs = {
 };
 
 
+export type MutationUpdateNewsCategoryArgs = {
+  data: NewsCategoryInput;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdateNewspostArgs = {
+  data: NewspostInput;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdateTagArgs = {
+  data: TagInput;
+  id: Scalars['ID']['input'];
+};
+
+
 export type MutationUpdateUploadFileArgs = {
   data: UploadFileInput;
   id: Scalars['ID']['input'];
@@ -449,6 +506,135 @@ export type MutationUploadArgs = {
   refId?: InputMaybe<Scalars['ID']['input']>;
 };
 
+export type NewsCategory = {
+  __typename?: 'NewsCategory';
+  colourLight?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  newsposts?: Maybe<NewspostRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type NewsCategoryNewspostsArgs = {
+  filters?: InputMaybe<NewspostFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type NewsCategoryEntity = {
+  __typename?: 'NewsCategoryEntity';
+  attributes?: Maybe<NewsCategory>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type NewsCategoryEntityResponse = {
+  __typename?: 'NewsCategoryEntityResponse';
+  data?: Maybe<NewsCategoryEntity>;
+};
+
+export type NewsCategoryEntityResponseCollection = {
+  __typename?: 'NewsCategoryEntityResponseCollection';
+  data: Array<NewsCategoryEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type NewsCategoryFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<NewsCategoryFiltersInput>>>;
+  colourLight?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  newsposts?: InputMaybe<NewspostFiltersInput>;
+  not?: InputMaybe<NewsCategoryFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<NewsCategoryFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type NewsCategoryInput = {
+  colourLight?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  newsposts?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Newspost = {
+  __typename?: 'Newspost';
+  author?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+  category?: Maybe<NewsCategoryEntityResponse>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  headImage?: Maybe<UploadFileEntityResponse>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  tags?: Maybe<TagRelationResponseCollection>;
+  title?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type NewspostTagsArgs = {
+  filters?: InputMaybe<TagFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type NewspostEntity = {
+  __typename?: 'NewspostEntity';
+  attributes?: Maybe<Newspost>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type NewspostEntityResponse = {
+  __typename?: 'NewspostEntityResponse';
+  data?: Maybe<NewspostEntity>;
+};
+
+export type NewspostEntityResponseCollection = {
+  __typename?: 'NewspostEntityResponseCollection';
+  data: Array<NewspostEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type NewspostFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<NewspostFiltersInput>>>;
+  author?: InputMaybe<StringFilterInput>;
+  body?: InputMaybe<StringFilterInput>;
+  category?: InputMaybe<NewsCategoryFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<NewspostFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<NewspostFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  tags?: InputMaybe<TagFiltersInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type NewspostInput = {
+  author?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+  category?: InputMaybe<Scalars['ID']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  headImage?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type NewspostRelationResponseCollection = {
+  __typename?: 'NewspostRelationResponseCollection';
+  data: Array<NewspostEntity>;
+};
+
 export type Pagination = {
   __typename?: 'Pagination';
   page: Scalars['Int']['output'];
@@ -476,6 +662,12 @@ export type Query = {
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
+  newsCategories?: Maybe<NewsCategoryEntityResponseCollection>;
+  newsCategory?: Maybe<NewsCategoryEntityResponse>;
+  newspost?: Maybe<NewspostEntityResponse>;
+  newsposts?: Maybe<NewspostEntityResponseCollection>;
+  tag?: Maybe<TagEntityResponse>;
+  tags?: Maybe<TagEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -508,6 +700,45 @@ export type QueryI18NLocaleArgs = {
 export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryNewsCategoriesArgs = {
+  filters?: InputMaybe<NewsCategoryFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryNewsCategoryArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QueryNewspostArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QueryNewspostsArgs = {
+  filters?: InputMaybe<NewspostFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryTagArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QueryTagsArgs = {
+  filters?: InputMaybe<TagFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
@@ -587,6 +818,63 @@ export type StringFilterInput = {
   null?: InputMaybe<Scalars['Boolean']['input']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   startsWith?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Tag = {
+  __typename?: 'Tag';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  newsposts?: Maybe<NewspostRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type TagNewspostsArgs = {
+  filters?: InputMaybe<NewspostFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type TagEntity = {
+  __typename?: 'TagEntity';
+  attributes?: Maybe<Tag>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type TagEntityResponse = {
+  __typename?: 'TagEntityResponse';
+  data?: Maybe<TagEntity>;
+};
+
+export type TagEntityResponseCollection = {
+  __typename?: 'TagEntityResponseCollection';
+  data: Array<TagEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type TagFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<TagFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  newsposts?: InputMaybe<NewspostFiltersInput>;
+  not?: InputMaybe<TagFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<TagFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type TagInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  newsposts?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type TagRelationResponseCollection = {
+  __typename?: 'TagRelationResponseCollection';
+  data: Array<TagEntity>;
 };
 
 export type UploadFile = {

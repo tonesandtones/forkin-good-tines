@@ -362,6 +362,152 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiBlogpostBlogpost extends Schema.CollectionType {
+  collectionName: 'blogposts';
+  info: {
+    singularName: 'blogpost';
+    pluralName: 'blogposts';
+    displayName: 'blogpost';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    slug: Attribute.UID<'api::blogpost.blogpost', 'title'>;
+    description: Attribute.Text;
+    author: Attribute.String;
+    body: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::blogpost.blogpost',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::blogpost.blogpost',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiNewsCategoryNewsCategory extends Schema.CollectionType {
+  collectionName: 'news_categories';
+  info: {
+    singularName: 'news-category';
+    pluralName: 'news-categories';
+    displayName: 'NewsCategory';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    newsposts: Attribute.Relation<
+      'api::news-category.news-category',
+      'oneToMany',
+      'api::newspost.newspost'
+    >;
+    colourLight: Attribute.String &
+      Attribute.CustomField<'plugin::color-picker.color'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::news-category.news-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::news-category.news-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiNewspostNewspost extends Schema.CollectionType {
+  collectionName: 'newsposts';
+  info: {
+    singularName: 'newspost';
+    pluralName: 'newsposts';
+    displayName: 'Newspost';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    slug: Attribute.UID<'api::newspost.newspost', 'title'>;
+    description: Attribute.Text;
+    body: Attribute.RichText;
+    headImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    author: Attribute.String;
+    tags: Attribute.Relation<
+      'api::newspost.newspost',
+      'manyToMany',
+      'api::tag.tag'
+    >;
+    category: Attribute.Relation<
+      'api::newspost.newspost',
+      'manyToOne',
+      'api::news-category.news-category'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::newspost.newspost',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::newspost.newspost',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTagTag extends Schema.CollectionType {
+  collectionName: 'tags';
+  info: {
+    singularName: 'tag';
+    pluralName: 'tags';
+    displayName: 'tag';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    newsposts: Attribute.Relation<
+      'api::tag.tag',
+      'manyToMany',
+      'api::newspost.newspost'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -789,152 +935,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiBlogpostBlogpost extends Schema.CollectionType {
-  collectionName: 'blogposts';
-  info: {
-    singularName: 'blogpost';
-    pluralName: 'blogposts';
-    displayName: 'blogpost';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    slug: Attribute.UID<'api::blogpost.blogpost', 'title'>;
-    description: Attribute.Text;
-    author: Attribute.String;
-    body: Attribute.RichText;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::blogpost.blogpost',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::blogpost.blogpost',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiNewsCategoryNewsCategory extends Schema.CollectionType {
-  collectionName: 'news_categories';
-  info: {
-    singularName: 'news-category';
-    pluralName: 'news-categories';
-    displayName: 'NewsCategory';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    newsposts: Attribute.Relation<
-      'api::news-category.news-category',
-      'oneToMany',
-      'api::newspost.newspost'
-    >;
-    colourLight: Attribute.String &
-      Attribute.CustomField<'plugin::color-picker.color'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::news-category.news-category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::news-category.news-category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiNewspostNewspost extends Schema.CollectionType {
-  collectionName: 'newsposts';
-  info: {
-    singularName: 'newspost';
-    pluralName: 'newsposts';
-    displayName: 'Newspost';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    slug: Attribute.UID<'api::newspost.newspost', 'title'>;
-    description: Attribute.Text;
-    body: Attribute.RichText;
-    headImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    author: Attribute.String;
-    tags: Attribute.Relation<
-      'api::newspost.newspost',
-      'manyToMany',
-      'api::tag.tag'
-    >;
-    category: Attribute.Relation<
-      'api::newspost.newspost',
-      'manyToOne',
-      'api::news-category.news-category'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::newspost.newspost',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::newspost.newspost',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTagTag extends Schema.CollectionType {
-  collectionName: 'tags';
-  info: {
-    singularName: 'tag';
-    pluralName: 'tags';
-    displayName: 'tag';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    newsposts: Attribute.Relation<
-      'api::tag.tag',
-      'manyToMany',
-      'api::newspost.newspost'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -945,6 +945,10 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::blogpost.blogpost': ApiBlogpostBlogpost;
+      'api::news-category.news-category': ApiNewsCategoryNewsCategory;
+      'api::newspost.newspost': ApiNewspostNewspost;
+      'api::tag.tag': ApiTagTag;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -953,10 +957,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::blogpost.blogpost': ApiBlogpostBlogpost;
-      'api::news-category.news-category': ApiNewsCategoryNewsCategory;
-      'api::newspost.newspost': ApiNewspostNewspost;
-      'api::tag.tag': ApiTagTag;
     }
   }
 }
