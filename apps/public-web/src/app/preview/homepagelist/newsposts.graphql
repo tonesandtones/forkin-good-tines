@@ -1,0 +1,59 @@
+﻿query NewspostsHeadlines(
+  $page: Int
+  $pageSize: Int
+  $filters: NewspostFiltersInput
+  $sort: [String]
+) {
+  newsposts(
+    pagination: { page: $page, pageSize: $pageSize }
+    sort: $sort
+    filters: $filters
+  ) {
+    data {
+      id
+      attributes {
+        title
+        description
+        slug
+        updatedAt
+        createdAt
+        publishedAt
+        tags {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+        category {
+          data {
+            attributes {
+              name
+              colourLight
+            }
+          }
+        }
+        headImage{
+          data{
+            attributes{
+              name
+              alternativeText
+              caption
+              ext
+              mime
+              formats
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        total
+        page
+        pageSize
+        pageCount
+      }
+    }
+  }
+}

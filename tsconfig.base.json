@@ -21,7 +21,7 @@
       "@sharknado/shared-utils": ["libs/shared-utils/src/index.ts"],
       "@sharknado/shared-utils/*": ["libs/libs/shared-utils/src/*"]
     },
-    "jsx": "react"
+    "jsx": "react-jsx"
   },
   "exclude": ["node_modules", "tmp"]
 }

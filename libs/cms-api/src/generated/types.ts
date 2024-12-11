@@ -1283,6 +1283,16 @@ export type CreateBlogpostMutationVariables = Exact<{
 
 export type CreateBlogpostMutation = { __typename?: 'Mutation', createBlogpost?: { __typename?: 'BlogpostEntityResponse', data?: { __typename?: 'BlogpostEntity', id?: string | null } | null } | null };
 
+export type NewspostsHeadlinesQueryVariables = Exact<{
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageSize?: InputMaybe<Scalars['Int']['input']>;
+  filters?: InputMaybe<NewspostFiltersInput>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+}>;
+
+
+export type NewspostsHeadlinesQuery = { __typename?: 'Query', newsposts?: { __typename?: 'NewspostEntityResponseCollection', data: Array<{ __typename?: 'NewspostEntity', id?: string | null, attributes?: { __typename?: 'Newspost', title?: string | null, description?: string | null, slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null } | null }> } | null, category?: { __typename?: 'NewsCategoryEntityResponse', data?: { __typename?: 'NewsCategoryEntity', attributes?: { __typename?: 'NewsCategory', name?: string | null, colourLight?: string | null } | null } | null } | null, headImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, caption?: string | null, ext?: string | null, mime: string, formats?: any | null } | null } | null } | null } | null }>, meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, page: number, pageSize: number, pageCount: number } } } | null };
+
 
 export const BlogpostsDocument = gql`
     query Blogposts($page: Int, $pageSize: Int, $filters: BlogpostFiltersInput, $sort: [String]) {
@@ -1443,3 +1453,95 @@ export function useCreateBlogpostMutation(baseOptions?: Apollo.MutationHookOptio
 export type CreateBlogpostMutationHookResult = ReturnType<typeof useCreateBlogpostMutation>;
 export type CreateBlogpostMutationResult = Apollo.MutationResult<CreateBlogpostMutation>;
 export type CreateBlogpostMutationOptions = Apollo.BaseMutationOptions<CreateBlogpostMutation, CreateBlogpostMutationVariables>;
+export const NewspostsHeadlinesDocument = gql`
+    query NewspostsHeadlines($page: Int, $pageSize: Int, $filters: NewspostFiltersInput, $sort: [String]) {
+  newsposts(
+    pagination: {page: $page, pageSize: $pageSize}
+    sort: $sort
+    filters: $filters
+  ) {
+    data {
+      id
+      attributes {
+        title
+        description
+        slug
+        updatedAt
+        createdAt
+        publishedAt
+        tags {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+        category {
+          data {
+            attributes {
+              name
+              colourLight
+            }
+          }
+        }
+        headImage {
+          data {
+            attributes {
+              name
+              alternativeText
+              caption
+              ext
+              mime
+              formats
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        total
+        page
+        pageSize
+        pageCount
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useNewspostsHeadlinesQuery__
+ *
+ * To run a query within a React component, call `useNewspostsHeadlinesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNewspostsHeadlinesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNewspostsHeadlinesQuery({
+ *   variables: {
+ *      page: // value for 'page'
+ *      pageSize: // value for 'pageSize'
+ *      filters: // value for 'filters'
+ *      sort: // value for 'sort'
+ *   },
+ * });
+ */
+export function useNewspostsHeadlinesQuery(baseOptions?: Apollo.QueryHookOptions<NewspostsHeadlinesQuery, NewspostsHeadlinesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<NewspostsHeadlinesQuery, NewspostsHeadlinesQueryVariables>(NewspostsHeadlinesDocument, options);
+      }
+export function useNewspostsHeadlinesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NewspostsHeadlinesQuery, NewspostsHeadlinesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<NewspostsHeadlinesQuery, NewspostsHeadlinesQueryVariables>(NewspostsHeadlinesDocument, options);
+        }
+export function useNewspostsHeadlinesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<NewspostsHeadlinesQuery, NewspostsHeadlinesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<NewspostsHeadlinesQuery, NewspostsHeadlinesQueryVariables>(NewspostsHeadlinesDocument, options);
+        }
+export type NewspostsHeadlinesQueryHookResult = ReturnType<typeof useNewspostsHeadlinesQuery>;
+export type NewspostsHeadlinesLazyQueryHookResult = ReturnType<typeof useNewspostsHeadlinesLazyQuery>;
+export type NewspostsHeadlinesSuspenseQueryHookResult = ReturnType<typeof useNewspostsHeadlinesSuspenseQuery>;
+export type NewspostsHeadlinesQueryResult = Apollo.QueryResult<NewspostsHeadlinesQuery, NewspostsHeadlinesQueryVariables>;
